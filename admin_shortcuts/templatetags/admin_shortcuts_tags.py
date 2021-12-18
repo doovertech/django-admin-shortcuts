@@ -10,8 +10,8 @@ try:
     from django.core.urlresolvers import reverse
 except ImportError:
     from django.urls import reverse
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ugettext
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext
 
 try:
     from django.utils.module_loading import import_module
@@ -37,7 +37,7 @@ def admin_shortcuts(context):
             raise ImproperlyConfigured('settings.ADMIN_SHORTCUTS is improperly configured.')
 
         if group.get('title'):
-            group['title'] = ugettext(group['title'])
+            group['title'] = gettext(group['title'])
 
         enabled_shortcuts = []
         for shortcut in group.get('shortcuts'):
@@ -71,7 +71,7 @@ def admin_shortcuts(context):
                 shortcut['count_new'] = eval_func(shortcut['count_new'], request)
 
             if shortcut.get('title'):
-                shortcut['title'] = ugettext(shortcut['title'])
+                shortcut['title'] = gettext(shortcut['title'])
 
             enabled_shortcuts.append(shortcut)
 
