@@ -4,7 +4,7 @@ import inspect
 from django import template
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 try:
     from django.core.urlresolvers import reverse
@@ -60,8 +60,8 @@ def admin_shortcuts(context):
                 shortcut['url'] += shortcut.get('url_extra', '')
 
             if not shortcut.get('icon'):
-                class_text = force_text(shortcut.get('url_name', shortcut.get('url', '')))
-                class_text += force_text(shortcut.get('title', ''))
+                class_text = force_str(shortcut.get('url_name', shortcut.get('url', '')))
+                class_text += force_str(shortcut.get('title', ''))
                 shortcut['icon'] = get_shortcut_class(class_text)
 
             if shortcut.get('count'):
